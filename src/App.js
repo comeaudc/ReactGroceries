@@ -5,7 +5,7 @@ import React from "react";
 console.table(items);
 class App extends React.Component {
   state = {
-    items: items
+    items: items,
   };
   handleChange = (evt) => {
     this.setState({ [evt.target.id]: evt.target.value });
@@ -18,7 +18,7 @@ class App extends React.Component {
       brand: this.state.brand,
       units: this.state.units,
       quantity: this.state.quantity,
-      isPurchased: false
+      isPurchased: false,
     };
     this.setState({
       items: [newItem, ...this.state.items],
@@ -31,53 +31,57 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <h1>Grocery List</h1>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="item">Item: </label>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-            placeholder="Item"
-            id="item"
-          />
-          <br />
-          <label htmlFor="brand">Brand: </label>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-            placeholder="Brand Name"
-            id="brand"
-          />
-          <br />
-          <label htmlFor="units">Units: </label>
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-            placeholder='0'
-            id="units"
-          />
-          <br />
-          <label htmlFor='quantity'>Quantity: </label>
-          <input
-            type='number'
-            value={this.state.value}
-            onChange={this.handleChange}
-            placeholder='Quantity'
-            id='quantity'/>
-          <br/>
-          <input 
-            type='submit' />
-
-        </form>
-        <p>To Get:</p>
-        <ul>
-          {this.state.items.map((item) => 
-            !item.isPurchased? <GroceryList item={item} /> : null
-          )}
-        </ul>
+        <h1>Grocery List:</h1>
+        <div class="container">
+          <form onSubmit={this.handleSubmit}>
+            <h3>Add Item?</h3>
+            <label htmlFor="item">Item: </label>
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+              placeholder="Item"
+              id="item"
+            />
+            <br />
+            <label htmlFor="brand">Brand: </label>
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+              placeholder="Brand Name"
+              id="brand"
+            />
+            <br />
+            <label htmlFor="units">Units: </label>
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+              placeholder="0"
+              id="units"
+            />
+            <br />
+            <label htmlFor="quantity">Quantity: </label>
+            <input
+              type="number"
+              value={this.state.value}
+              onChange={this.handleChange}
+              placeholder="Quantity"
+              id="quantity"
+            />
+            <br />
+            <input type="submit" value='Add Item'/>
+          </form>
+          <div class="list">
+            <p>To Get:</p>
+            <ul>
+              {this.state.items.map((item) =>
+                !item.isPurchased ? <GroceryList item={item} /> : null
+              )}
+            </ul>
+          </div>
+        </div>
       </>
     );
   }
